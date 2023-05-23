@@ -45,7 +45,8 @@ public class PlayerController : Singleton<PlayerController>
     {
         HorizontalMovement();
         RaycastHit2D hit = Physics2D.Raycast(rb.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
-        grounded = hit.collider != null && hit.rigidbody != rb;
+        RaycastHit2D hit1 = Physics2D.Raycast(rb.position, Vector2.down, 1.05f, LayerMask.GetMask("Obstacles"));
+        grounded = (hit.collider != null && hit.rigidbody != rb)|| (hit1.collider != null && hit1.rigidbody != rb);
         if (grounded)
             VerticalMovement();
         ApplyGravity();
@@ -107,7 +108,10 @@ public class PlayerController : Singleton<PlayerController>
     }
     public void Shoot()
     {
+        Vector2 dir = new Vector2(shootingPoint.position.x - transform.position.x, shootingPoint.position.y - transform.position.y);
         GameObject obj = ObjectPooling.Instance.GetObjectFromPool("Bullet");
-        obj.GetComponent<BulletData>().Setup(damage, new Vector2(velocity.x / Mathf.Abs(velocity.x), 0));
+        obj.GetComponent<BulletData>().Setup(damage, new Vector2(dir.x / Mathf.Abs(dir.x), 0));
+        obj.transform.position = shootingPoint.position;
+        obj.SetActive(true);
     }
 }

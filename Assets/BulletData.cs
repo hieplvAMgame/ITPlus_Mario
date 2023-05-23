@@ -18,7 +18,7 @@ public class BulletData : MonoBehaviour
     private void Update()
     {
         if (!isDone) return;
-        transform.position = transform.position 
-            + new Vector3(direction.x,direction.y,0) * speed * Time.deltaTime;
+        transform.position
+        += new Vector3(direction.x, direction.y, 0) * speed * Time.deltaTime;
     }
 }

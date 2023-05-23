@@ -35,8 +35,7 @@ public class ObjectPooling : Singleton<ObjectPooling>
                 int temp = i;
                 if (!poolDict[key][temp].activeInHierarchy)
                 {
-                    poolDict[key][temp].SetActive(true);
-                    Debug.LogError("1");
+                    //poolDict[key][temp].SetActive(true);
                     return poolDict[key][temp]; 
                 }
             }
@@ -51,9 +50,8 @@ public class ObjectPooling : Singleton<ObjectPooling>
                 }
             }
             GameObject newObj = Instantiate(listObjectToPool[_index], transform);
-            newObj.SetActive(true);
+            //newObj.SetActive(true);
             poolDict[key].Add(newObj);
-            Debug.LogError("2");
             return newObj;
         }
         return null;
