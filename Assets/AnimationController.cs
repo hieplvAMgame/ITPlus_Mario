@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
-    private PlayerController playerController;
     private Animator anim;
     private void Awake()
     {
-        playerController = GetComponentInParent<PlayerController>();
         anim = GetComponent<Animator>();
     }
     private void LateUpdate()
     {
-        anim.SetBool(ANIM_PARAM.Move, playerController.running);
-        anim.SetBool(ANIM_PARAM.Jump, playerController.jumping);
-        anim.SetBool(ANIM_PARAM.Slide, playerController.sliding);
+        UpdateAnim();
+    }
+    public void UpdateAnim()
+    {
+        anim.SetBool(ANIM_PARAM.Move, PlayerController.Instance.running);
+        anim.SetBool(ANIM_PARAM.Jump, PlayerController.Instance.jumping);
+        anim.SetBool(ANIM_PARAM.Slide, PlayerController.Instance.sliding);
     }
 }
 public struct ANIM_PARAM

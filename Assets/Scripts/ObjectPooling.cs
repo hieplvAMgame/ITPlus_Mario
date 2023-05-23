@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPooling : MonoBehaviour
+public class ObjectPooling : Singleton<ObjectPooling>
 {
     public List<GameObject> listObjectToPool = new List<GameObject>();
     public int size;

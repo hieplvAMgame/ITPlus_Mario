@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     [SerializeField] Camera mainCamera;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Collider2D collider;
 
+    [SerializeField] Transform shootingPoint;
+
     private Vector2 velocity;
     private float inputAxis;
 
+    public float damage = 5;
     public float moveSpeed = 8f;
     public float maxJumpHeight = 5f;
     public float maxJumpTime = 1f;
@@ -46,6 +49,8 @@ public class PlayerController : MonoBehaviour
         if (grounded)
             VerticalMovement();
         ApplyGravity();
+        if (Input.GetKeyDown(KeyCode.J))
+            Shoot();
     }
     private void OnDrawGizmos()
     {
@@ -58,10 +63,10 @@ public class PlayerController : MonoBehaviour
         pos += velocity * Time.fixedDeltaTime;
 
         // Clamp player in screen
-
         Vector2 leftEdge = mainCamera.ScreenToWorldPoint(Vector2.zero);
         Vector2 rightEdge = mainCamera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
         pos.x = Mathf.Clamp(pos.x, leftEdge.x + 0.5f, rightEdge.x - 0.5f);
+
         rb.MovePosition(pos);
     }
     /// <summary>
@@ -72,7 +77,7 @@ public class PlayerController : MonoBehaviour
         inputAxis = Input.GetAxis("Horizontal");
         velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * moveSpeed, moveSpeed * Time.deltaTime);
 
-        if (rb.Raycast(Vector2.right * velocity.x)) velocity.x = 0;
+        if (rb.Raycast(Vector2.right * velocity.x)) velocity.x = 0;         // Check xem va vao tuong 
 
         if (velocity.x > 0)
             transform.eulerAngles = Vector3.zero;
@@ -89,7 +94,6 @@ public class PlayerController : MonoBehaviour
             velocity.y = jumpForce;
             jumping = true;
         }
-        Debug.LogError(jumping);
     }
     private void ApplyGravity()
     {
@@ -100,5 +104,10 @@ public class PlayerController : MonoBehaviour
 
         velocity.y += gravity * multiplier * Time.deltaTime;
         velocity.y = Mathf.Max(velocity.y, gravity / 2f);
+    }
+    public void Shoot()
+    {
+        GameObject obj = ObjectPooling.Instance.GetObjectFromPool("Bullet");
+        obj.GetComponent<BulletData>().Setup(damage, new Vector2(velocity.x / Mathf.Abs(velocity.x), 0));
     }
 }
