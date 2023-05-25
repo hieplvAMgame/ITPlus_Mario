@@ -20,5 +20,13 @@ public class BulletData : MonoBehaviour
         if (!isDone) return;
         transform.position
         += new Vector3(direction.x, direction.y, 0) * speed * Time.deltaTime;
+        if (direction.x > 0)
+        {
+            transform.eulerAngles = Vector3.zero;
+        }
+        else
+        {
+            transform.eulerAngles = Vector3.up * 180;
+        }
     }
 }

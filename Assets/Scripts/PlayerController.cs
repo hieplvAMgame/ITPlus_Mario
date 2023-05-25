@@ -25,6 +25,8 @@ public class PlayerController : Singleton<PlayerController>
     public bool running => Mathf.Abs(velocity.x) > 0.25f || Mathf.Abs(inputAxis) > 0.25f;
     public bool sliding => (inputAxis > 0f && velocity.x < 0f) || (inputAxis < 0f && velocity.x > 0f);
 
+
+    private Vector2 _shootingDir;
     private void OnEnable()
     {
         rb.isKinematic = false;
@@ -57,6 +59,9 @@ public class PlayerController : Singleton<PlayerController>
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(rb.position, rb.position + Vector2.down);
+        
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(rb.position, rb.position + _shootingDir);
     }
     private void FixedUpdate()
     {
@@ -108,9 +113,9 @@ public class PlayerController : Singleton<PlayerController>
     }
     public void Shoot()
     {
-        Vector2 dir = new Vector2(shootingPoint.position.x - transform.position.x, shootingPoint.position.y - transform.position.y);
+        _shootingDir = new Vector2(shootingPoint.position.x - transform.position.x, shootingPoint.position.y - transform.position.y);
         GameObject obj = ObjectPooling.Instance.GetObjectFromPool("Bullet");
-        obj.GetComponent<BulletData>().Setup(damage, new Vector2(dir.x / Mathf.Abs(dir.x), 0));
+        obj.GetComponent<BulletData>().Setup(damage, new Vector2(_shootingDir.x / Mathf.Abs(_shootingDir.x), 0));
         obj.transform.position = shootingPoint.position;
         obj.SetActive(true);
     }
