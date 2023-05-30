@@ -1,4 +1,4 @@
-
+using System.Collections;
 using UnityEngine;
 
 public static class Extensions
@@ -18,5 +18,9 @@ public static class Extensions
     {
         Vector2 direction = other.position - transform.position;
         return Vector2.Dot(direction.normalized, testDirection) > 0.25f;
+    }
+    public static void DeActiveObj(this GameObject obj)
+    {
+        obj.SetActive(false);
     }
 }

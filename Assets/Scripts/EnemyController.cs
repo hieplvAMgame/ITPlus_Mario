@@ -6,6 +6,8 @@ public class EnemyController : MonoBehaviour
 {
     private Vector2 velocity;
     public Rigidbody2D rb;
+    public GameObject liveSprite;
+    public GameObject deathSprite;
 
     public float speed = 2;
     public float minX = -10;
@@ -38,6 +40,22 @@ public class EnemyController : MonoBehaviour
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         rb.MovePosition(pos);
     }
-
+    public void ShowDeathAnim()
+    {
+        StartCoroutine(DeathControl());
+    }
+    private IEnumerator DeathControl()
+    {
+        liveSprite.SetActive(false);
+        deathSprite.SetActive(true);
+        GetComponent<CircleCollider2D>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = true;
+        yield return new WaitForSeconds(.2f);
+        gameObject.SetActive(false);
+        liveSprite.SetActive(true);
+        deathSprite.SetActive(false);
+        GetComponent<CircleCollider2D>().enabled = true;
+        GetComponent<BoxCollider2D>().enabled = false;
+    }
 
 }
