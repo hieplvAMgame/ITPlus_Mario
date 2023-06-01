@@ -6,9 +6,11 @@ public class PlayerPhysics : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Goomba") && transform.DotTest(collision.transform, Vector2.down))
+        if (collision.gameObject.CompareTag("Goomba"))
         {
-            collision.transform.GetComponent<EnemyController>().ShowDeathAnim();
+            Vector2 contactPoint = collision.GetContact(0).point;
+            if (Mathf.Abs(Vector2.Angle(contactPoint - GetComponent<Rigidbody2D>().position, Vector2.down)) < 25f)
+                collision.transform.GetComponent<EnemyController>().ShowDeathAnim();
         }
     }
 }
