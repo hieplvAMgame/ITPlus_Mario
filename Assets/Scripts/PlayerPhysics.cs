@@ -11,6 +11,16 @@ public class PlayerPhysics : MonoBehaviour
             Vector2 contactPoint = collision.GetContact(0).point;
             if (Mathf.Abs(Vector2.Angle(contactPoint - GetComponent<Rigidbody2D>().position, Vector2.down)) < 25f)
                 collision.transform.GetComponent<EnemyController>().ShowDeathAnim();
+            else
+            {
+                PlayerController.Instance.playerAnim.AnimHurt();
+            }
         }
+        //if (collision.gameObject.CompareTag("Bullet"))
+        //{
+        //    int damageTaken = collision.gameObject.GetComponent<Bullet>().damage;
+        //    PlayerController.Instance.GetDamage(damageTaken);
+        //    PlayerController.Instance.playerAnim.AnimHurt();
+        //}
     }
 }

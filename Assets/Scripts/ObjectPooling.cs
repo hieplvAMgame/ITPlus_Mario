@@ -9,8 +9,12 @@ public class ObjectPooling : Singleton<ObjectPooling>
     Dictionary<string, List<GameObject>> poolDict = new Dictionary<string, List<GameObject>>();
     // Bullet
     //"Bullet", List<GameObject>
-
+    public System.Action OnCompleteCreatePool;
     private void Awake()
+    {
+        CreatePool();
+    }
+    private void CreatePool()
     {
         for (int j = 0; j < listObjectToPool.Count; j++)
             for (int i = 0; i < size; i++)
@@ -25,6 +29,7 @@ public class ObjectPooling : Singleton<ObjectPooling>
                 }
                 poolDict[key].Add(obj);
             }
+        OnCompleteCreatePool?.Invoke();
     }
     public GameObject GetObjectFromPool(string key) // "Bullet"
     {

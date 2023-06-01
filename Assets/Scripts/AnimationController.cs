@@ -19,6 +19,24 @@ public class AnimationController : MonoBehaviour
         anim.SetBool(ANIM_PARAM.Jump, PlayerController.Instance.jumping);
         anim.SetBool(ANIM_PARAM.Slide, PlayerController.Instance.sliding);
     }
+    public void AnimHurt()
+    {
+        Debug.LogError("ANIM HURT");
+        StartCoroutine(IAnimHurt());
+    }
+    private float _curTime = 0;
+    private IEnumerator IAnimHurt()
+    {
+        PlayerController.Instance.DisablePhysic();
+        for(int i = 0; i < 3; i++)
+        {
+            GetComponent<SpriteRenderer>().color = Color.red;
+            yield return new WaitForSeconds(.2f);
+            GetComponent<SpriteRenderer>().color = Color.white;
+            yield return new WaitForSeconds(.2f);
+        }
+        PlayerController.Instance.EnablePhysics();
+    }
 }
 public struct ANIM_PARAM
 {

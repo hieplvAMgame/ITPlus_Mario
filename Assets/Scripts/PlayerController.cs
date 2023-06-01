@@ -7,13 +7,14 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] Camera mainCamera;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Collider2D collider;
-
+    [SerializeField] public AnimationController playerAnim;
     [SerializeField] Transform shootingPoint;
 
     private Vector2 velocity;
     private float inputAxis;
 
-    public float damage = 5;
+    public int hp;
+    public int damage = 5;
     public float moveSpeed = 8f;
     public float maxJumpHeight = 5f;
     public float maxJumpTime = 1f;
@@ -30,7 +31,7 @@ public class PlayerController : Singleton<PlayerController>
     private void OnEnable()
     {
         rb.isKinematic = false;
-        collider.enabled = true;
+        collider.isTrigger = false;
         velocity = Vector2.zero;
         jumping = false;
     }
@@ -42,13 +43,25 @@ public class PlayerController : Singleton<PlayerController>
         velocity = Vector2.zero;
         jumping = false;
     }
-
+    public void DisablePhysic()
+    {
+        rb.isKinematic = true;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        collider.isTrigger = true;
+    }
+    public void EnablePhysics()
+    {
+        rb.isKinematic = false;
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        collider.isTrigger = false;
+    }
     private void Update()
     {
         HorizontalMovement();
         RaycastHit2D hit = Physics2D.Raycast(rb.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
         RaycastHit2D hit1 = Physics2D.Raycast(rb.position, Vector2.down, 1.05f, LayerMask.GetMask("Obstacles"));
-        grounded = (hit.collider != null && hit.rigidbody != rb)|| (hit1.collider != null && hit1.rigidbody != rb);
+        grounded = (hit.collider != null && hit.rigidbody != rb) || (hit1.collider != null && hit1.rigidbody != rb);
         if (grounded)
             VerticalMovement();
         ApplyGravity();
@@ -59,7 +72,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(rb.position, rb.position + Vector2.down);
-        
+
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(rb.position, rb.position + _shootingDir);
     }
@@ -118,5 +131,9 @@ public class PlayerController : Singleton<PlayerController>
         obj.GetComponent<BulletData>().Setup(damage, new Vector2(_shootingDir.x / Mathf.Abs(_shootingDir.x), 0));
         obj.transform.position = shootingPoint.position;
         obj.SetActive(true);
+    }
+    public void GetDamage(int amount)
+    {
+        hp = hp >= amount ? hp -= amount : 0;
     }
 }

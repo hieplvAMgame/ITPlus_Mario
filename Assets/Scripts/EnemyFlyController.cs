@@ -7,7 +7,7 @@ public class EnemyFlyController : MonoBehaviour
     public Transform shootingPoint;
     public float minX, maxX;
     public float speed;
-    public float damage;
+    public int damage;
     public float fireRate;
     public float delayTime = .5f;
 
@@ -41,7 +41,7 @@ public class EnemyFlyController : MonoBehaviour
         {
             isShooting = true;
             GameObject obj = ObjectPooling.Instance.GetObjectFromPool("FireBullet");
-            obj.GetComponent<FireBullet>().Setup(damage);
+            obj.GetComponent<FireBullet>().Setup(damage, Vector2.zero);
             obj.transform.position = shootingPoint.position;
             obj.SetActive(true);
             Invoke(nameof(ResetTime), delayTime);

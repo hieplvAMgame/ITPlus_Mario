@@ -2,27 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBullet : MonoBehaviour
+public class FireBullet : Bullet
 {
-    public float damage;
-    public float speed;
 
     private void Update()
     {
         transform.position += Vector3.down * speed * Time.deltaTime;
     }
-    public void Setup(float _damage)
+    public override void Setup(int _damage, Vector2 dir)
     {
-        damage = _damage;
-    }
-    private void ResetBullet()
-    {
-        transform.position = Vector3.zero;
-        transform.eulerAngles = Vector3.zero;
+        base.Setup(_damage, dir);
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground")||collision.gameObject.CompareTag("Player"))
         {
             this.gameObject.SetActive(false);
             ResetBullet();
