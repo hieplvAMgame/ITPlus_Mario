@@ -13,7 +13,19 @@ public class PlayerPhysics : MonoBehaviour
                 collision.transform.GetComponent<EnemyController>().ShowDeathAnim();
             else
             {
-                PlayerController.Instance.playerAnim.AnimHurt();
+                EnemyData enem = collision.transform.GetComponent<EnemyData>();
+                GetComponent<PlayerData>().GetDamage(enem.damage, (isDie) =>
+                 {
+                     if (isDie)
+                     {
+                         //Show Anim Die
+                         gameObject.SetActive(false);
+                     }
+                     else
+                     {
+                         PlayerController.Instance.playerAnim.AnimHurt();
+                     }
+                 });
             }
         }
         //if (collision.gameObject.CompareTag("Bullet"))
@@ -22,5 +34,13 @@ public class PlayerPhysics : MonoBehaviour
         //    PlayerController.Instance.GetDamage(damageTaken);
         //    PlayerController.Instance.playerAnim.AnimHurt();
         //}
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("UnderGround"))
+        {
+            gameObject.SetActive(false);
+            //Reset Game;
+        }
     }
 }

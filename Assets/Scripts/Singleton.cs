@@ -21,16 +21,15 @@ public class Singleton<T> : MonoBehaviour where T : Component
             return _instance;
         }
     }
-    private void Awake()
+    protected virtual void Awake()
     {
-        if(_instance == null)
+        if (_instance == null)
         {
             _instance = this as T;
         }
         else
-        if(_instance == this)
-        {
+
             Destroy(gameObject);
-        }
+
     }
 }
