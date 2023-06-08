@@ -10,6 +10,8 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] public AnimationController playerAnim;
     [SerializeField] Transform shootingPoint;
 
+    [SerializeField] public CharacterScriptable baseDatas;
+
     private Vector2 velocity;
     private float inputAxis;
 
@@ -28,6 +30,18 @@ public class PlayerController : Singleton<PlayerController>
 
 
     private Vector2 _shootingDir;
+    protected override void Awake()
+    {
+        base.Awake();
+        SetupPlayer();
+        //jumpForce = playerData.JumpLvl * .5f + baseDatas.jumpForce;
+    }
+    private void SetupPlayer()
+    {
+        damage = PlayerData.Instance.DamageLvl * 2 + baseDatas.damage;
+        moveSpeed = PlayerData.Instance.SpeedLvl * .2f + baseDatas.speed;
+        hp = PlayerData.Instance.HpLvl + baseDatas.hp;
+    }
     private void OnEnable()
     {
         rb.isKinematic = false;

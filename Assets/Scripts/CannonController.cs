@@ -37,5 +37,6 @@ public class CannonController : MonoBehaviour
             obj.transform.position = shootingPoint1.position;
         }
         obj.SetActive(true);
+
     }
 }

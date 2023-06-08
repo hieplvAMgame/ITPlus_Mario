@@ -189,7 +189,7 @@ Transform:
   - {fileID: 1680350183}
   - {fileID: 768368408}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &224824054
 GameObject:
@@ -204,7 +204,6 @@ GameObject:
   - component: {fileID: 224824056}
   - component: {fileID: 224824055}
   - component: {fileID: 224824059}
-  - component: {fileID: 224824060}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -266,6 +265,7 @@ MonoBehaviour:
   collider: {fileID: 224824055}
   playerAnim: {fileID: 463554518}
   shootingPoint: {fileID: 609842780}
+  baseDatas: {fileID: 11400000, guid: 2fd291d0b42168b41a5d9a1fe49688d3, type: 2}
   hp: 0
   damage: 5
   moveSpeed: 8
@@ -279,14 +279,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224824054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.48, y: -2.91, z: 0}
+  m_LocalPosition: {x: -5.48, y: -2.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 463554521}
   - {fileID: 609842780}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &224824059
 MonoBehaviour:
@@ -300,21 +300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ecc857ea94bbaa47bdcbd94de27740d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &224824060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 224824054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3487c6a431acbb4985fac563eacf95c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: 0
-  hp: 3
-  damage: 1
 --- !u!1 &282245829
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +614,7 @@ Transform:
   - {fileID: 557225191}
   - {fileID: 1298310147}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &463554517
 GameObject:
@@ -910,7 +895,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &537404225
 GameObject:
@@ -961,7 +946,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &557225190
 GameObject:
@@ -2395,7 +2380,7 @@ RectTransform:
   - {fileID: 386153747}
   - {fileID: 801922207}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3146,26 +3131,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1805307508}
   m_CullTransparentMesh: 1
---- !u!1 &1833826216 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2094510252611555292, guid: 2640dcdfab243f842924c7eec896a85b, type: 3}
-  m_PrefabInstance: {fileID: 962905999}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1833826217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1833826216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 700ed4ece59180241a09d4e636734f0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: 0
-  hp: 1
-  damage: 2
 --- !u!1 &1861033732
 GameObject:
   m_ObjectHideFlags: 0
@@ -3232,7 +3197,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1896533555
 GameObject:
@@ -3901,7 +3866,6 @@ MonoBehaviour:
   - {fileID: 4174269518530390527, guid: 3b443cec64255194aaa6e2216ae55f51, type: 3}
   - {fileID: 4849162170285554553, guid: 51a596005f4243849a76a2b8f62c7cd1, type: 3}
   - {fileID: 5015678451036704331, guid: 6c15ff0e226bf314aaf2ec026f02483c, type: 3}
-  - {fileID: 2094510252611555292, guid: 2640dcdfab243f842924c7eec896a85b, type: 3}
   - {fileID: 6546042486321123797, guid: fd48d7dc21d49414caf1e65aec2b2680, type: 3}
   size: 15
 --- !u!4 &2146006365
@@ -3917,5 +3881,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

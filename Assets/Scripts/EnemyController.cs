@@ -49,14 +49,11 @@ public class EnemyController : MonoBehaviour
     {
         liveSprite.SetActive(false);
         deathSprite.SetActive(true);
-        GetComponent<CircleCollider2D>().enabled = false;
-        GetComponent<BoxCollider2D>().enabled = true;
+        GetComponent<BoxCollider2D>().enabled = false;
         yield return new WaitForSeconds(.2f);
-        gameObject.SetActive(false);
+        gameObject.transform.parent.gameObject.SetActive(false);
         liveSprite.SetActive(true);
         deathSprite.SetActive(false);
-        GetComponent<CircleCollider2D>().enabled = true;
-        GetComponent<BoxCollider2D>().enabled = false;
     }
 
 }

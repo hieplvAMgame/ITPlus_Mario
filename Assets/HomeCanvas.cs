@@ -12,8 +12,16 @@ public class HomeCanvas : Singleton<HomeCanvas>
     public Text txtCoin = default;
     public Text txtGem = default;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         btnPlay.onClick.AddListener(() => LoadingSceneManager.Instance.LoadScene("Game"));
+        btnSetting.onClick.AddListener(() => UIHelper.Instance.ShowPopup("SettingPopups"));
+        SetupUI();
+    }
+    private void SetupUI()
+    {
+        txtCoin.text = PlayerData.Instance.Gold.ToString();
+        txtGem.text = PlayerData.Instance.Gem.ToString();
     }
 }

@@ -9,7 +9,6 @@ public class LoadingSceneManager : Singleton<LoadingSceneManager>
     protected override void Awake()
     {
         base.Awake();
-        DontDestroyOnLoad(this);
     }
     public void LoadScene(string sceneName)
     {

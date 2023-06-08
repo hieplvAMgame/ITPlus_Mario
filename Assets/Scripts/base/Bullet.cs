@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public int damage;
-    public float speed;
-
+    [HideInInspector] public int damage;
+    [HideInInspector] public float speed;
+    public BulletScriptable datas = default;
     protected virtual void Movement()
     {
     }
     public virtual void Setup(int _damage, Vector2 dir)
     {
         damage = _damage;
+        damage = datas.damage;
+        speed = datas.speed;
     }
     public virtual void ResetBullet()
     {
