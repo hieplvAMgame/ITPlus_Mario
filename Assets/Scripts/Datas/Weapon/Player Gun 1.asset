@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d67fa49cb277b2940aefeaa9865858dd, type: 3}
+  m_Name: Player Gun 1
+  m_EditorClassIdentifier: 
+  name: Tiny Gun
+  baseDamage: 2
+  maxDamage: 5
+  baseHp: 3
+  maxHp: 8
+  baseJumpForce: 6
+  maxJumpForce: 7
+  baseSpeed: 2
+  maxSpeed: 9
+  preview: {fileID: 21300000, guid: 1b08f23842693de4582cf063e7d4bec1, type: 3}

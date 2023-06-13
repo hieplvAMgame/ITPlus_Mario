@@ -8,6 +8,8 @@ public class HomeCanvas : Singleton<HomeCanvas>
     public Button btnSetting = default;
     public Button btnPlay = default;
     public Button btnShop = default;
+    public Button btnUpgrade = default;
+
 
     public Text txtCoin = default;
     public Text txtGem = default;
@@ -17,6 +19,7 @@ public class HomeCanvas : Singleton<HomeCanvas>
         base.Awake();
         btnPlay.onClick.AddListener(() => LoadingSceneManager.Instance.LoadScene("Game"));
         btnSetting.onClick.AddListener(() => UIHelper.Instance.ShowPopup("SettingPopups"));
+        btnUpgrade.onClick.AddListener(() => LoadingSceneManager.Instance.LoadScene("Upgrade"));
         SetupUI();
     }
     private void SetupUI()

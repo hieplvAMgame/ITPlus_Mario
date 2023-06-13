@@ -47,7 +47,7 @@ public class PlayerData : CharacterData
     }
     public int Gold
     {
-        get => PlayerPrefs.GetInt(PLAYER_KEY.Gold, 500);
+        get => PlayerPrefs.GetInt(PLAYER_KEY.Gold, 100000);
         set => PlayerPrefs.SetInt(PLAYER_KEY.Gold, value);
     }
     public int Gem
@@ -65,6 +65,11 @@ public class PlayerData : CharacterData
         get => PlayerPrefs.GetInt(PLAYER_KEY.ClearedLevel, 0);
         set => PlayerPrefs.SetInt(PLAYER_KEY.ClearedLevel, value);
     }
+    public int CurrentWeapon
+    {
+        get => PlayerPrefs.GetInt(PLAYER_KEY.CurrentWeapon, 0);
+        set => PlayerPrefs.SetInt(PLAYER_KEY.CurrentWeapon, value);
+    }
 }
 
 public struct PLAYER_KEY
@@ -78,6 +83,7 @@ public struct PLAYER_KEY
     public const string Gem = "Gem";
     public const string CurentLevel = "CurentLevel";
     public const string ClearedLevel = "ClearedLevel";
+    public const string CurrentWeapon = "CurrentWeapon";
 
 }
 
