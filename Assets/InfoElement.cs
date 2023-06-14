@@ -15,7 +15,9 @@ public class InfoElement : MonoBehaviour
         weaponData = WeaponManager.Instance.weaponDatas[PlayerData.Instance.CurrentWeapon];
         selfButton.onClick.AddListener(() =>
         {
+            InformationUiManager.Instance.upgradePanel.gameObject.SetActive(true);
             OnClickUpgrade?.Invoke((int)type);
+            //InformationUiManager.Instance.upgradePanel.AnimateActive();
             Debug.LogError($"{type} is Press");
         });
         txtTitle.text = type.ToString();
@@ -24,7 +26,7 @@ public class InfoElement : MonoBehaviour
             case TYPE_INFO_WEAPON.DAMAGE:
                 txtValue.text = (weaponData.baseDamage
                     + WeaponManager.Instance.GetDataWeapon(
-                        PlayerData.Instance.CurrentWeapon, (int)type)).ToString();
+                        PlayerData.Instance.CurrentWeapon, (int)type)*2).ToString();
                 break;
             case TYPE_INFO_WEAPON.HP:
                 txtValue.text = (weaponData.baseHp

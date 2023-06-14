@@ -8,17 +8,19 @@ public class InformationUiManager : Singleton<InformationUiManager>
     public List<InfoElement> infoElements = new List<InfoElement>();
     public Text txtTitle;
     public Image previewWeapon;
+    public UpgradePanelUI upgradePanel;
 
     public Transform contentWeaponUI;
     public WeaponElementUI weaponElementUI;
     private List<WeaponElementUI> listWeaponUI = new List<WeaponElementUI>();
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         GenerateUIWeapon();
         SetupUI();
     }
-    private void SetupUI()
+    public void SetupUI()
     {
         infoElements.ForEach(x => x.Setup());
         txtTitle.text = WeaponManager.Instance.weaponDatas[PlayerData.Instance.CurrentWeapon]
