@@ -9,6 +9,7 @@ public class InformationUiManager : Singleton<InformationUiManager>
     public Text txtTitle;
     public Image previewWeapon;
     public UpgradePanelUI upgradePanel;
+    public Button closeBtn;
 
     public Transform contentWeaponUI;
     public WeaponElementUI weaponElementUI;
@@ -17,6 +18,7 @@ public class InformationUiManager : Singleton<InformationUiManager>
     protected override void Awake()
     {
         base.Awake();
+        closeBtn.onClick.AddListener(() => LoadingSceneManager.Instance.LoadScene("Home"));
         GenerateUIWeapon();
         SetupUI();
     }

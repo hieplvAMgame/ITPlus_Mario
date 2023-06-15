@@ -8,9 +8,12 @@ public class GamePanel : Singleton<GamePanel>
     public Button btnPause = default;
     public PausePopup pausePopup = default;
 
-    private void Awake()
+    public Button shopBtn;
+    public GameObject shopPanel;
+    protected override void Awake()
     {
         btnPause.onClick.AddListener(OnClickBtnPause);
+        shopBtn.onClick.AddListener(() => shopPanel.SetActive(true));
     }
 
     private void OnClickBtnPause()

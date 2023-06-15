@@ -13,6 +13,7 @@ public class WeaponElementUI : MonoBehaviour
     public Button btnBuy;
     public Button btnEquip;
     public GameObject btnEquipped;
+    public GameObject lockObj;
 
     private WeaponScriptable data;
     public void SetupUI(WeaponScriptable _data, int _id)
@@ -43,11 +44,13 @@ public class WeaponElementUI : MonoBehaviour
             btnBuy.gameObject.SetActive(false);
             btnEquip.gameObject.SetActive(false);
             btnEquipped.gameObject.SetActive(true);
+            lockObj.SetActive(false);
         }
         else
         {
             btnBuy.gameObject.SetActive(!WeaponManager.Instance.IsBuyWeapon(id));
             btnEquip.gameObject.SetActive(WeaponManager.Instance.IsBuyWeapon(id));
+            lockObj.SetActive(!WeaponManager.Instance.IsBuyWeapon(id));
             btnEquipped.gameObject.SetActive(false);
             txtPrice.text = data.price + "$";
         }

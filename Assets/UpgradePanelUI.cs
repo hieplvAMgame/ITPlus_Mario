@@ -23,17 +23,17 @@ public class UpgradePanelUI : MonoBehaviour
     {
         InfoElement.OnClickUpgrade = SetupUI;
         btnBuy.onClick.AddListener(OnClickBuyBtn);
-        btnExit.onClick.AddListener(() => gameObject.SetActive(false));
+        btnExit.onClick.AddListener(() => AnimateDeActive());
     }
     public void AnimateActive()
     {
-        _originPos = transform.localPosition;
-        transform.localPosition = new Vector3(Screen.width, 0, 0);
-        transform.DOLocalMoveX(_originPos.x, duration);
+        transform.localScale = Vector3.zero;
+        transform.DOScale(Vector3.one, duration);
     }
     public void AnimateDeActive()
     {
-        transform.DOLocalMoveX(Screen.width, duration);
+        transform.DOScale(Vector3.zero, duration);
+        gameObject.SetActive(false);
     }
     int _originLvl, _nextLvl;
     public void SetupUI(int id)
@@ -52,9 +52,48 @@ public class UpgradePanelUI : MonoBehaviour
                 _nextLvl = _originLvl+1;
                 Debug.LogError($"NEXT VALUE {_nextLvl}");
                 txtBefore.text = (weaponData.baseDamage
-                    + _originLvl*2).ToString();
+                    + _originLvl* weaponData.mulDame).ToString();
                 txtAfter.text = (weaponData.baseDamage
-                    + _nextLvl*2).ToString();
+                    + _nextLvl* weaponData.mulDame).ToString();
+                break;
+            case TYPE_INFO_WEAPON.HP:
+                price = 100;
+                txtPrice.text = price.ToString() + "$";
+                _originLvl = WeaponManager.Instance.GetDataWeapon(
+                        PlayerData.Instance.CurrentWeapon, id);
+                Debug.LogError($"ORIGIN VALUE {_originLvl}");
+                _nextLvl = _originLvl + 1;
+                Debug.LogError($"NEXT VALUE {_nextLvl}");
+                txtBefore.text = (weaponData.baseHp
+                    + _originLvl * weaponData.mulHP).ToString();
+                txtAfter.text = (weaponData.baseHp
+                    + _nextLvl * weaponData.mulHP).ToString();
+                break;
+            case TYPE_INFO_WEAPON.JUMP:
+                price = 100;
+                txtPrice.text = price.ToString() + "$";
+                _originLvl = WeaponManager.Instance.GetDataWeapon(
+                        PlayerData.Instance.CurrentWeapon, id);
+                Debug.LogError($"ORIGIN VALUE {_originLvl}");
+                _nextLvl = _originLvl + 1;
+                Debug.LogError($"NEXT VALUE {_nextLvl}");
+                txtBefore.text = (weaponData.baseJumpForce
+                    + _originLvl * weaponData.mulJump).ToString();
+                txtAfter.text = (weaponData.baseJumpForce
+                    + _nextLvl * weaponData.mulJump).ToString();
+                break;
+            case TYPE_INFO_WEAPON.SPEED:
+                price = 100;
+                txtPrice.text = price.ToString() + "$";
+                _originLvl = WeaponManager.Instance.GetDataWeapon(
+                        PlayerData.Instance.CurrentWeapon, id);
+                Debug.LogError($"ORIGIN VALUE {_originLvl}");
+                _nextLvl = _originLvl + 1;
+                Debug.LogError($"NEXT VALUE {_nextLvl}");
+                txtBefore.text = (weaponData.baseSpeed
+                    + _originLvl * weaponData.mulSpeed).ToString();
+                txtAfter.text = (weaponData.baseSpeed
+                    + _nextLvl * weaponData.mulSpeed).ToString();
                 break;
         }
     }

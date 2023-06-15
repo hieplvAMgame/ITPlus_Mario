@@ -648,6 +648,11 @@ MonoBehaviour:
   state: 0
   hp: 0
   damage: 0
+  characterDatas:
+  - {fileID: 11400000, guid: 2fd291d0b42168b41a5d9a1fe49688d3, type: 2}
+  - {fileID: 11400000, guid: 3f481429f0212fd45890d44455f281ba, type: 2}
+  - {fileID: 11400000, guid: 0e1a7f0e8b114e94b9a95ccfeaac08e1, type: 2}
+  - {fileID: 11400000, guid: 723fae83939f574428e4a7149148b498, type: 2}
 --- !u!1 &484397072
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,8 +756,8 @@ RectTransform:
   - {fileID: 1237814400}
   - {fileID: 718496077}
   - {fileID: 1614652006}
-  - {fileID: 1426332799}
   - {fileID: 2079296182}
+  - {fileID: 1426332799}
   m_Father: {fileID: 1778112407}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1525,7 +1530,7 @@ RectTransform:
   - {fileID: 899763273}
   - {fileID: 748264338}
   m_Father: {fileID: 554723842}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -1657,7 +1662,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SHOP
+  m_Text: UPGRADE
 --- !u!222 &1514126132
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2079,7 +2084,7 @@ GameObject:
   - component: {fileID: 2079296184}
   - component: {fileID: 2079296183}
   m_Layer: 5
-  m_Name: ShopButton (1)
+  m_Name: UpgradeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2099,11 +2104,11 @@ RectTransform:
   m_Children:
   - {fileID: 1514126129}
   m_Father: {fileID: 554723842}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -921}
+  m_AnchoredPosition: {x: 0, y: -942}
   m_SizeDelta: {x: 455, y: 203}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2079296183

@@ -17,7 +17,7 @@ public class InfoElement : MonoBehaviour
         {
             InformationUiManager.Instance.upgradePanel.gameObject.SetActive(true);
             OnClickUpgrade?.Invoke((int)type);
-            //InformationUiManager.Instance.upgradePanel.AnimateActive();
+            InformationUiManager.Instance.upgradePanel.AnimateActive();
             Debug.LogError($"{type} is Press");
         });
         txtTitle.text = type.ToString();

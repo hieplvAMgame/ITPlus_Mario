@@ -33,6 +33,7 @@ public class PlayerController : Singleton<PlayerController>
     protected override void Awake()
     {
         base.Awake();
+        OnGameManager.Instance.OnChangeState = OnChangeState;
         SetupPlayer();
         //jumpForce = playerData.JumpLvl * .5f + baseDatas.jumpForce;
     }
@@ -70,8 +71,10 @@ public class PlayerController : Singleton<PlayerController>
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         collider.isTrigger = false;
     }
+    private bool isStart = false;
     private void Update()
     {
+        if (!isStart) return;
         HorizontalMovement();
         RaycastHit2D hit = Physics2D.Raycast(rb.position, Vector2.down, 1.05f, LayerMask.GetMask("Ground"));
         RaycastHit2D hit1 = Physics2D.Raycast(rb.position, Vector2.down, 1.05f, LayerMask.GetMask("Obstacles"));
@@ -92,6 +95,7 @@ public class PlayerController : Singleton<PlayerController>
     }
     private void FixedUpdate()
     {
+        if (!isStart) return;
         Vector2 pos = rb.position;
         pos += velocity * Time.fixedDeltaTime;
 
@@ -149,5 +153,35 @@ public class PlayerController : Singleton<PlayerController>
     public void GetDamage(int amount)
     {
         hp = hp >= amount ? hp -= amount : 0;
+    }
+    WeaponScriptable weaponData;
+    public void Setup()
+    {
+        weaponData = WeaponManager.Instance.weaponDatas[PlayerData.Instance.CurrentWeapon];
+
+        damage = PlayerData.Instance.characterDatas[PlayerData.Instance.CurrentCharacter].damage
+            + weaponData.baseDamage
+                    + WeaponManager.Instance.GetDataWeapon(
+                        PlayerData.Instance.CurrentWeapon, 
+                        (int)TYPE_INFO_WEAPON.DAMAGE)*2;
+    }
+
+    private void OnChangeState(GAME_STATE state)
+    {
+        switch (state)
+        {
+            case GAME_STATE.Game_Prepare:
+                Setup();
+                break;
+            case GAME_STATE.Game_Start:
+                isStart = true;
+                break;
+            case GAME_STATE.Game_Complete:
+                //play anim victory
+                break;
+            case GAME_STATE.Game_Over:
+                //play anim lose
+                break;
+        }
     }
 }

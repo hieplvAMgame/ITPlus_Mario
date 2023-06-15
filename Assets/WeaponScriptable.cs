@@ -17,4 +17,10 @@ public class WeaponScriptable : ScriptableObject
     public float maxSpeed;
     public Sprite preview;
     public int price = 200;
+
+    [Header("Level Multipler value")]
+    public int mulDame = 2;
+    public int mulHP = 1;
+    public int mulSpeed = 2;
+    public int mulJump = 2;
 }

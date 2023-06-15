@@ -6,6 +6,7 @@ public class PlayerData : CharacterData
 {
     public static PlayerData Instance;
 
+    public List<CharacterScriptable> characterDatas = new List<CharacterScriptable>();
     private void Awake()
     {
         if (Instance == null)
@@ -70,6 +71,11 @@ public class PlayerData : CharacterData
         get => PlayerPrefs.GetInt(PLAYER_KEY.CurrentWeapon, 0);
         set => PlayerPrefs.SetInt(PLAYER_KEY.CurrentWeapon, value);
     }
+    public int CurrentCharacter
+    {
+        get => PlayerPrefs.GetInt(PLAYER_KEY.CurrentCharacter, 0);
+        set => PlayerPrefs.SetInt(PLAYER_KEY.CurrentCharacter, value);
+    }
 }
 
 public struct PLAYER_KEY
@@ -84,7 +90,7 @@ public struct PLAYER_KEY
     public const string CurentLevel = "CurentLevel";
     public const string ClearedLevel = "ClearedLevel";
     public const string CurrentWeapon = "CurrentWeapon";
-
+    public const string CurrentCharacter = "CurrentCharacter";
 }
 
 
